@@ -1,0 +1,33 @@
+<div class="mt-6">
+  <agm-map
+    [latitude]="lat"
+    [longitude]="lng"
+    [zoom]="zoomValue"
+    [disableDefaultUI]="false"
+    [zoomControl]="true"
+  >
+    <agm-marker
+      *ngFor="let m of mapData"
+      [latitude]="m.lat"
+      [longitude]="m.lng"
+      label="{{ m.label }}(Click)"
+      [markerDraggable]="false"
+    >
+      <agm-info-window>
+        <strong
+          >Information About <span class="font-bold">{{ m.label }}</span>
+        </strong>
+        <div class="flex flex-col justify-center items-center">
+          <div class="flex justify-between items-center">
+            <div>Cases:</div>
+            <div class="font-bold">{{ m.cases }}</div>
+          </div>
+          <div class="flex justify-between items-center">
+            <div>Deaths:</div>
+            <div class="font-bold">{{ m.deaths }}</div>
+          </div>
+        </div>
+      </agm-info-window>
+    </agm-marker>
+  </agm-map>
+</div>

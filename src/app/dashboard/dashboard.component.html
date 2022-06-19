@@ -1,0 +1,16 @@
+<ng-http-loader spinner="sk-wave"></ng-http-loader>
+
+<div class="p-6 lg:px-14">
+  <app-dropdown
+    [dropdownList]="countriesList"
+    (selectedCountry)="onCountrySelectionChange($event)"
+  ></app-dropdown>
+
+  <app-map [mapData]="mapData" [zoomValue]="selectedCountry ? 1 : 5"></app-map>
+  <app-statistics [statisticsObj]="statisticsObj"></app-statistics>
+
+  <app-chart
+    [chartDataValues]="chartDataValues"
+    [selectedCountry]="selectedCountry"
+  ></app-chart>
+</div>
