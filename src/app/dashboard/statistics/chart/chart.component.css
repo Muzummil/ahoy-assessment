@@ -4,7 +4,7 @@
     overflow: hidden;
 }
 
-@media (min-width: 200px) and (max-width: 400px) {
+@media (min-width: 200px) and (max-width: 350px) {
     .chart, .chart div[dir] {
         height: 300px !important;
         width: 100%  !important;

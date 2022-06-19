@@ -1,5 +1,5 @@
 <div class="grid grid-cols-1 md:grid-cols-2 gap-4 justify-center items-center">
-  <div class="chart" *ngIf="!selectedCountry">
+  <div class="chart bg-white border rounded-md" *ngIf="!selectedCountry">
     <google-chart
       class="chart"
       [type]="chart.PieChart"
@@ -8,16 +8,17 @@
       [data]="defaultDataValue"
     ></google-chart>
   </div>
-  <div class="chart" *ngIf="selectedCountry">
+  <div class="chart bg-white border rounded-md" *ngIf="selectedCountry">
     <google-chart
       [type]="chart.LineChart"
       style="width: 100%"
       class="chart"
       [options]="chart.options"
+      [columnNames]="['Months', 'Total', 'Active', 'Recovered', 'Deaths']"
       [data]="lineChartData"
     ></google-chart>
   </div>
-  <div class="chart" *ngIf="!selectedCountry">
+  <div class="chart bg-white border rounded-md" *ngIf="!selectedCountry">
     <google-chart
       class="chart"
       [type]="chart.ColumnChart"
@@ -26,7 +27,7 @@
       [data]="defaultDataValue"
     ></google-chart>
   </div>
-  <div class="chart" *ngIf="selectedCountry">
+  <div class="chart bg-white border rounded-md" *ngIf="selectedCountry">
     <google-chart
       [type]="chart.Histogram"
       [options]="chart.options"

@@ -4,7 +4,7 @@
     <button
       type="button"
       (click)="toggleDropdownItemsVisibilityToggle()"
-      class="inline-flex justify-center w-full rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-indigo-500"
+      class="inline-flex text-white justify-center w-full rounded-md border bg-backgroundColor border-backgroundColor shadow-sm px-4 py-2 bg-blue hover:bg-backgroundColor-400 focus:outline-none focus:ring-blue-300 text-sm font-medium focus:outline-none active:scale-90 transition-all duration-75 ease-out"
       id="menu-button"
       aria-expanded="true"
       aria-haspopup="true"
@@ -25,16 +25,16 @@
       -->
   <div
     *ngIf="dropdownItemsVisibilityToggle"
-    class="h-36 z-50 cursor-pointer overflow-y-scroll origin-top-right absolute right-0 mt-2 w-full left-0 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 divide-y divide-gray-100 focus:outline-none"
+    class="h-36 z-50 text-white cursor-pointer overflow-y-scroll origin-top-right absolute right-0 mt-2 w-full left-0 shadow-lg bg-gray-700 ring-1 ring-gray rounded ring-opacity-5 divide-y divide-gray-100 focus:outline-none"
     role="menu"
     aria-orientation="vertical"
     aria-labelledby="menu-button"
     tabindex="-1"
   >
-    <div class="py-1" role="none">
+    <div class="py-1 bg-gray" role="none">
       <a
         (click)="selectCountry(null)"
-        class="text-gray-700 block px-4 py-2 text-sm"
+        class="block px-4 py-2 text-sm"
         role="menuitem"
         tabindex="-1"
         id="menu-item-0"
@@ -42,10 +42,10 @@
       >
     </div>
 
-    <div *ngFor="let item of dropdownList" class="py-1" role="none">
+    <div *ngFor="let item of dropdownList" class="py-1 bg-gray" role="none">
       <a
         (click)="selectCountry(item)"
-        class="text-gray-700 block px-4 py-2 text-sm"
+        class="block px-4 py-2 text-sm"
         role="menuitem"
         tabindex="-1"
         id="menu-item-0"

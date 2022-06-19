@@ -79,6 +79,7 @@ export class ConfigService {
         data.cases.total,
         data.cases.active,
         data.cases.recovered,
+        data.deaths.total,
       ]);
     });
     return retData;
