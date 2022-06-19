@@ -1,28 +1,46 @@
-import { Injectable } from '@angular/core';
+import { Injectable } from "@angular/core";
 import {
-  HttpRequest,
-  HttpHandler,
   HttpEvent,
+  HttpHandler,
   HttpInterceptor,
+  HttpRequest,
   HttpHeaders,
-} from '@angular/common/http';
-import { Observable } from 'rxjs';
-
+  HttpResponse,
+} from "@angular/common/http";
+import { Observable, of, tap } from "rxjs";
+import { CacheResolverService } from "../services/cache-service/cache.service";
+const TIME_TO_LIVE = 1000;
 @Injectable()
 export class RequestsInterceptor implements HttpInterceptor {
-  constructor() {}
+  constructor(private cacheResolver: CacheResolverService) {}
 
   intercept(
-    request: HttpRequest<any>,
+    req: HttpRequest<any>,
     next: HttpHandler
   ): Observable<HttpEvent<any>> {
     const headers = new HttpHeaders({
-      'X-RapidAPI-Key': '002d1752e0mshbc8a1e862ac81d7p16727ejsnff7f8dfec935',
-      'X-RapidAPI-Host': 'covid-193.p.rapidapi.com',
-      'Content-Type': 'application/json',
+      "X-RapidAPI-Key": "002d1752e0mshbc8a1e862ac81d7p16727ejsnff7f8dfec935",
+      "X-RapidAPI-Host": "covid-193.p.rapidapi.com",
+      "Content-Type": "application/json",
     });
-    const cloneReq = request.clone({ headers });
+    req = req.clone({ headers });
+    if (req.method !== "GET") {
+      return next.handle(req);
+    }
+    const cachedResponse = this.cacheResolver.get(req.urlWithParams);
+    return cachedResponse ? of(cachedResponse) : this.sendRequest(req, next);
+  }
 
-    return next.handle(cloneReq);
+  sendRequest(
+    req: HttpRequest<any>,
+    next: HttpHandler
+  ): Observable<HttpEvent<any>> {
+    return next.handle(req).pipe(
+      tap((event) => {
+        if (event instanceof HttpResponse) {
+          this.cacheResolver.set(req.urlWithParams, event, TIME_TO_LIVE);
+        }
+      })
+    );
   }
 }

@@ -1,16 +1,18 @@
 .chart, .chart div[dir] {
     height: 600px;
+    width: 100%;
+    overflow: hidden;
 }
 
 @media (min-width: 200px) and (max-width: 400px) {
     .chart, .chart div[dir] {
         height: 300px !important;
-        width: 300px  !important;
+        width: 100%  !important;
     }
 }
-@media (min-width: 401px) and (max-width: 767px) {
+/* @media (min-width: 401px) and (max-width: 767px) {
     .chart, .chart div[dir] {
         height: 500px  !important;
         width: 500px  !important;
     }
-}
+} */

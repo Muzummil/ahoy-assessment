@@ -1,37 +1,37 @@
 import {
   StatisticsInterface,
   Deaths,
-} from './../../models/statistics.interface';
-import { Injectable } from '@angular/core';
-import { MarkersInterface } from '../../models/map-markers.interface';
+} from "./../../models/statistics.interface";
+import { Injectable } from "@angular/core";
+import { MarkersInterface } from "../../models/map-markers.interface";
 @Injectable({
-  providedIn: 'root',
+  providedIn: "root",
 })
 export class ConfigService {
   constructor() {}
 
   public getApiBaseUrl(): string {
-    return 'https://covid-193.p.rapidapi.com/';
+    return "https://covid-193.p.rapidapi.com/";
   }
 
   public getMapDataApiBaseURL(): string {
-    return 'https://disease.sh/v3/covid-19/';
+    return "https://disease.sh/v3/covid-19/";
   }
 
   private getMonthName = (date: string): string => {
     const monthNames = [
-      'January',
-      'February',
-      'March',
-      'April',
-      'May',
-      'June',
-      'July',
-      'August',
-      'September',
-      'October',
-      'November',
-      'December',
+      "January",
+      "February",
+      "March",
+      "April",
+      "May",
+      "June",
+      "July",
+      "August",
+      "September",
+      "October",
+      "November",
+      "December",
     ];
     const d = new Date(date);
     return monthNames[d.getMonth()];
@@ -47,7 +47,6 @@ export class ConfigService {
   }
 
   public parseDataToMapsData(apiResponse: any): MarkersInterface[] {
-    console.log(apiResponse);
     if (apiResponse.length) {
       return apiResponse.map((val: any) => {
         return {
@@ -86,15 +85,16 @@ export class ConfigService {
   }
 
   public getStatisticObjFromCountries(
+    countryName: string | null,
     countriesArr: Array<StatisticsInterface>
   ): StatisticsInterface[] {
     let retObj: StatisticsInterface = {
-      country: '',
-      day: '',
+      country: "",
+      day: "",
       deaths: { total: 0 },
       cases: { total: 0, active: 0, recovered: 0 },
     };
-    if (countriesArr.length < 2) {
+    if (countryName) {
       retObj.cases = countriesArr[0].cases;
       retObj.deaths = countriesArr[0].deaths;
       retObj.country = countriesArr[0].country;

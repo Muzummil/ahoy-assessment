@@ -1,9 +1,9 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from "@angular/core";
 
 @Component({
-  selector: 'app-dropdown',
-  templateUrl: './dropdown.component.html',
-  styleUrls: ['./dropdown.component.css'],
+  selector: "app-dropdown",
+  templateUrl: "./dropdown.component.html",
+  styleUrls: ["./dropdown.component.css"],
 })
 export class DropdownComponent implements OnInit {
   @Input() dropdownList: Array<string> = [];
@@ -18,7 +18,6 @@ export class DropdownComponent implements OnInit {
     this.dropdownItemsVisibilityToggle = !this.dropdownItemsVisibilityToggle;
   }
   selectCountry(countryName: string | null): void {
-    console.log(countryName);
     this.selectedCountryLocal = countryName;
     this.selectedCountry.next(countryName);
     this.toggleDropdownItemsVisibilityToggle();
