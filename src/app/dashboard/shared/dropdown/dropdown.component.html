@@ -25,13 +25,13 @@
       -->
   <div
     *ngIf="dropdownItemsVisibilityToggle"
-    class="h-36 z-50 text-white cursor-pointer overflow-y-scroll origin-top-right absolute right-0 mt-2 w-full left-0 shadow-lg bg-gray-700 ring-1 ring-gray rounded ring-opacity-5 divide-y divide-gray-100 focus:outline-none"
+    class="h-44 z-50 text-white cursor-pointer overflow-y-scroll origin-top-right absolute right-0 mt-2 w-full left-0 shadow-lg bg-gray-700 ring-1 ring-gray rounded ring-opacity-5 divide-y divide-gray-100 focus:outline-none"
     role="menu"
     aria-orientation="vertical"
     aria-labelledby="menu-button"
     tabindex="-1"
   >
-    <div class="py-1 bg-gray" role="none">
+    <div class="py-1 bg-gray items-border" role="none">
       <a
         (click)="selectCountry(null)"
         class="block px-4 py-2 text-sm"
@@ -42,7 +42,11 @@
       >
     </div>
 
-    <div *ngFor="let item of dropdownList" class="py-1 bg-gray" role="none">
+    <div
+      *ngFor="let item of dropdownList"
+      class="py-1 bg-gray items-border"
+      role="none"
+    >
       <a
         (click)="selectCountry(item)"
         class="block px-4 py-2 text-sm"
